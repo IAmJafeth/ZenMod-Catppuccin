@@ -1,0 +1,142 @@
+---
+whiskers:
+    version: 2.5.0
+    filename: "userChrome.css"
+---
+
+@media (prefers-color-scheme: dark){
+    {% for key,flavor in flavors %} {# Iterating trough all flavors #}
+        {% if flavors[key].dark%} {# Selecting only dark flavors #}
+            {%- set palette = flavor.colors -%}
+            :root:has(#theme-Catppuccin[theme-Catppuccin-dark_flavor="{{ flavor.identifier}}"]){
+                {% for key, accent in flavor.colors %}
+                    {% if accent.accent %}
+                        :root:has(#theme-Catppuccin[theme-Catppuccin-dark_accent="{{ accent.identifier }}"]){
+                            :root {
+                                --zen-colors-primary: #{{ palette.surface0.hex }} !important;
+                                --zen-primary-color: #{{ accent.hex }} !important;
+                                --zen-colors-secondary: #{{ palette.surface0.hex }} !important;
+                                --zen-colors-tertiary: #{{ palette.mantle.hex }} !important;
+                                --zen-colors-border: #{{ accent.hex }} !important;
+                                --toolbarbutton-icon-fill: #{{ accent.hex }} !important;
+                                --lwt-text-color: #{{ palette.text.hex }} !important;
+                                --toolbar-field-color: #{{ palette.text.hex }} !important;
+                                --tab-selected-textcolor: {{ accent | mix(color=palette.text, amount=0.5) | css_rgb}} !important;
+                                --toolbar-field-focus-color: #{{ palette.text.hex }} !important;
+                                --toolbar-color: #{{ palette.text.hex }} !important;
+                                --newtab-text-primary-color: #{{ palette.text.hex }} !important;
+                                --arrowpanel-color: #{{ palette.text.hex }} !important;
+                                --arrowpanel-background: #{{ palette.base.hex }} !important;
+                                --sidebar-text-color: #{{ palette.text.hex }} !important;
+                                --lwt-sidebar-text-color: #{{ palette.text.hex }} !important;
+                                --lwt-sidebar-background-color: #{{ palette.crust.hex }} !important;
+                                --toolbar-bgcolor: #{{ palette.surface0.hex }} !important;
+                                --newtab-background-color: #{{ palette.base.hex }} !important;
+                                --zen-themed-toolbar-bg: #{{ palette.mantle.hex }} !important;
+                            }
+
+                            #permissions-granted-icon{
+                                color: #{{ palette.mantle.hex }} !important;
+                            }
+
+                            .sidebar-placesTree {
+                                background-color: #{{ palette.surface0.hex }} !important;
+                            }
+
+                            #zen-workspaces-button {
+                                background-color: #{{ palette.base.hex }} !important;
+                            }
+
+                            #TabsToolbar {
+                                background-color: #{{ palette.mantle.hex }} !important;
+                            }
+
+                            #urlbar-background {
+                                background-color: #{{ palette.base.hex }} !important;
+                            }
+
+                            .content-shortcuts {
+                                background-color: #{{ palette.base.hex }} !important;
+                                border-color: #{{ accent.hex }} !important;
+                            }
+
+                            .urlbarView-url {
+                                color: #{{ accent.hex }} !important;
+                            }
+
+                            #zenEditBookmarkPanelFaviconContainer {
+                            background: #{{ palette.crust.hex }} !important;
+                            }
+                        }
+                    {% endif %}
+                {% endfor %}
+            }
+        {% endif %}
+    {% endfor %}
+}
+
+@media (prefers-color-scheme: light){
+    {%- set flavor = flavors.latte -%}
+    {%- set palette = flavor.colors -%}
+    {% for key, accent in flavor.colors %}
+        {% if accent.accent %}
+            :root:has(#theme-Catppuccin[theme-Catppuccin-light_accent="{{ accent.identifier }}"]){
+                :root {
+                    --zen-colors-primary: #{{ palette.surface0.hex }} !important;
+                    --zen-primary-color: #{{ accent.hex }} !important;
+                    --zen-colors-secondary: #{{ palette.surface0.hex }} !important;
+                    --zen-colors-tertiary: #{{ palette.mantle.hex }} !important;
+                    --zen-colors-border: #{{ accent.hex }} !important;
+                    --toolbarbutton-icon-fill: #{{ accent.hex }} !important;
+                    --lwt-text-color: #{{ palette.text.hex }} !important;
+                    --toolbar-field-color: #{{ palette.text.hex }} !important;
+                    --tab-selected-textcolor: {{ accent | mix(color=palette.text, amount=0.5) | css_rgb}} !important;
+                    --toolbar-field-focus-color: #{{ palette.text.hex }} !important;
+                    --toolbar-color: #{{ palette.text.hex }} !important;
+                    --newtab-text-primary-color: #{{ palette.text.hex }} !important;
+                    --arrowpanel-color: #{{ palette.text.hex }} !important;
+                    --arrowpanel-background: #{{ palette.base.hex }} !important;
+                    --sidebar-text-color: #{{ palette.text.hex }} !important;
+                    --lwt-sidebar-text-color: #{{ palette.text.hex }} !important;
+                    --lwt-sidebar-background-color: #{{ palette.crust.hex }} !important;
+                    --toolbar-bgcolor: #{{ palette.surface0.hex }} !important;
+                    --newtab-background-color: #{{ palette.base.hex }} !important;
+                    --zen-themed-toolbar-bg: #{{ palette.mantle.hex }} !important;
+                }
+
+                #permissions-granted-icon{
+                    color: #{{ palette.mantle.hex }} !important;
+                }
+
+                .sidebar-placesTree {
+                    background-color: #{{ palette.surface0.hex }} !important;
+                }
+
+                #zen-workspaces-button {
+                    background-color: #{{ palette.base.hex }} !important;
+                }
+
+                #TabsToolbar {
+                    background-color: #{{ palette.mantle.hex }} !important;
+                }
+
+                #urlbar-background {
+                    background-color: #{{ palette.base.hex }} !important;
+                }
+
+                .content-shortcuts {
+                    background-color: #{{ palette.base.hex }} !important;
+                    border-color: #{{ accent.hex }} !important;
+                }
+
+                .urlbarView-url {
+                    color: #{{ accent.hex }} !important;
+                }
+
+                #zenEditBookmarkPanelFaviconContainer {
+                background: #{{ palette.crust.hex }} !important;
+                }
+            }
+        {% endif %}
+    {% endfor %}
+}
