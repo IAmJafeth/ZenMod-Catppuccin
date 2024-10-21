@@ -1,5 +1,7 @@
 # Catppuccin Theme for Zen Browser
 
+![Preview Image](assets/png/preview.png)
+
 Experience a soothing and elegant browsing interface with the **Catppuccin Theme** for Zen Browser. This theme brings a harmonious blend of pastel colors to your browser, enhancing your workflow with a visually pleasing and comfortable atmosphere.
 
 This theme provides **four Catppuccin flavors** and all their accent colors, which you can select from Zen Browser's **Zen Mods** in the settings page:
